@@ -43,7 +43,7 @@ export default function HeroContent() {
           Alfi Tsani
         </motion.h1>
 
-        <motion.div variants={itemVariants} className="mb-60">
+        <motion.div variants={itemVariants} className="mb-50 md:mb-60">
           <div className="w-16 h-[1px] bg-white/20 mx-auto mb-4" />
           <h2 className="text-base md:text-lg font-light text-white/30 uppercase tracking-[0.4em]">
             {personalData.position}
@@ -54,7 +54,7 @@ export default function HeroContent() {
           <ShatteredImage
             src="/hero/gambaralfi.webp"
             alt="Alfi Tsani"
-            className="w-80 h-80 md:w-[550px] md:h-[550px] absolute bottom-0"
+            className="w-[500px] h-[500px] md:w-[550px] md:h-[550px] absolute bottom-0"
           />
         </motion.div>
       </motion.div>
