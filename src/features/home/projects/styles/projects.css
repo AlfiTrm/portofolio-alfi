@@ -1,0 +1,102 @@
+/* Projects Section Styles */
+/* Hologram and Projection Card Effects */
+
+/* Card perspective container */
+.project-card-perspective {
+  perspective: 1500px;
+}
+
+/* 3D card transform preserve */
+.project-card-3d {
+  transform-style: preserve-3d;
+  transform-origin: center bottom;
+}
+
+/* Dot pattern background overlay */
+.project-dot-pattern {
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Hologram projection beam */
+.projection-beam {
+  background: linear-gradient(to top, rgba(34, 211, 238, 0.2), transparent);
+  clip-path: polygon(20% 100%, 80% 100%, 100% 0, 0 0);
+  filter: blur(15px);
+}
+
+.projection-beam-inner {
+  background: linear-gradient(to top, rgba(167, 243, 208, 0.1), transparent);
+  clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
+  filter: blur(10px);
+}
+
+/* Hologram image container */
+.hologram-container {
+  perspective: 1000px;
+}
+
+/* Scanline overlay effect */
+.hologram-scanlines {
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Hologram glow effect */
+.hologram-glow {
+  box-shadow: inset 0 0 30px rgba(34, 211, 238, 0.3);
+  pointer-events: none;
+}
+
+/* Targeting bracket corners */
+.hologram-bracket {
+  width: 24px;
+  height: 24px;
+  border-color: rgb(34, 211, 238);
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.8));
+}
+
+.hologram-bracket-tl {
+  border-left-width: 2px;
+  border-top-width: 2px;
+}
+
+.hologram-bracket-tr {
+  border-right-width: 2px;
+  border-top-width: 2px;
+}
+
+.hologram-bracket-bl {
+  border-left-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.hologram-bracket-br {
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+/* Hologram floor glow */
+.hologram-floor-glow {
+  width: 90%;
+  height: 16px;
+  background: rgba(34, 211, 238, 0.2);
+  filter: blur(12px);
+  border-radius: 100%;
+}
+
+/* Text shadow for cyan glow */
+.text-shadow-cyan {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+/* Card shadow layer */
+.project-card-shadow {
+  transform: translateZ(-20px);
+}
