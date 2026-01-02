@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import ScrollReveal from "@/shared/components/ScrollReveal";
 import { aboutData } from "../data/aboutData";
+import { Coffee, Gamepad2, Moon, Headphones } from "lucide-react";
+import ScrollRevealText from "../components/ScrollRevealText";
 import "../styles/about.css";
 
 export default function AboutSection() {
@@ -118,10 +120,15 @@ export default function AboutSection() {
                 </div>
 
                 <div className="relative w-80 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl">
-                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-                    <div className="w-2 h-2 rounded-full bg-white/40" />
-                    <span className="text-white/30 text-xs uppercase tracking-widest font-light">
-                      Developer ID
+                  <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-white/40" />
+                      <span className="text-white/30 text-xs uppercase tracking-widest font-light">
+                        Developer ID
+                      </span>
+                    </div>
+                    <span className="text-white/20 text-xs font-mono">
+                      #CAFE
                     </span>
                   </div>
 
@@ -137,9 +144,17 @@ export default function AboutSection() {
                   </div>
 
                   <div className="space-y-2 mb-4">
-                    <h3 className="text-2xl font-bold text-white">
-                      Alfi Tsani
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-2xl font-bold text-white">
+                        Alfi Tsani
+                      </h3>
+                      <div className="flex items-center gap-1.5">
+                        <Coffee className="w-4 h-4 text-white/30" />
+                        <Gamepad2 className="w-4 h-4 text-white/30" />
+                        <Moon className="w-4 h-4 text-white/30" />
+                        <Headphones className="w-4 h-4 text-white/30" />
+                      </div>
+                    </div>
                     <p className="text-white/40 text-sm uppercase tracking-wider font-light">
                       Frontend Developer
                     </p>
@@ -173,16 +188,9 @@ export default function AboutSection() {
 
           <ScrollReveal className="max-w-3xl mx-auto text-center" delay={0.3}>
             <h3 className="text-2xl font-semibold text-white mb-8">My Story</h3>
-            <div className="space-y-6">
-              {aboutData.description.split("\n\n").map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-lg text-white/60 leading-relaxed font-light"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+            <ScrollRevealText
+              paragraphs={aboutData.description.split("\n\n")}
+            />
           </ScrollReveal>
         </div>
       </div>

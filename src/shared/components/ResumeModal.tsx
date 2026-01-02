@@ -40,7 +40,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
             className="fixed inset-0 z-[101] flex items-center justify-center p-4 md:p-8 pointer-events-none"
           >
-            <div className="w-full max-w-6xl h-[90vh] bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl pointer-events-auto flex flex-col">
+            <div className="w-full max-w-6xl h-[85vh] md:h-[90vh] min-h-[500px] bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden shadow-2xl pointer-events-auto flex flex-col">
               <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10 bg-white/5">
                 <h3 className="text-xl font-bold text-white tracking-tight">
                   Curriculum Vitae

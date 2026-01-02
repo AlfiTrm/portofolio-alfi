@@ -25,12 +25,4 @@ export const skillsData = {
       ],
     },
   ],
-  softSkills: [
-    "Problem Solving",
-    "Team Collaboration", 
-    "Communication",
-    "Quick Learner",
-    "Attention to Detail",
-    "Time Management",
-  ],
 };

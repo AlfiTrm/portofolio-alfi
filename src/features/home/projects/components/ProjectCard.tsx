@@ -59,7 +59,6 @@ export default function ProjectCard({
   const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
   const cardRef = React.useRef<HTMLDivElement>(null);
 
-  // Handle mouse move for 3D tilt effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || isActive) return;
     const rect = cardRef.current.getBoundingClientRect();
@@ -74,11 +73,9 @@ export default function ProjectCard({
     setMousePosition({ x: 0.5, y: 0.5 });
   };
 
-  // Calculate 3D tilt values
   const tiltX = isHovered && !isActive ? (mousePosition.y - 0.5) * -20 : 0;
   const tiltY = isHovered && !isActive ? (mousePosition.x - 0.5) * 20 : 0;
 
-  // Calculate glow position for border effect
   const glowX = mousePosition.x * 100;
   const glowY = mousePosition.y * 100;
 
@@ -330,18 +327,18 @@ export default function ProjectCard({
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 z-[50] pointer-events-auto"
               style={{
-                width: isMobile ? "110%" : "140%", // Responsive Best Practice
+                width: isMobile ? "110%" : "140%",
                 bottom: "30%",
               }}
               initial={{ opacity: 0, scale: 0.8, y: 50, rotateX: 20 }}
               animate={{
                 opacity: 1,
                 scale: 1,
-                y: isMobile ? -60 : -100, // Tuned vertical position
+                y: isMobile ? -60 : -100,
                 rotateX: 0,
                 transition: {
                   type: "spring",
-                  damping: 15, // Bouncy/Elastic feel
+                  damping: 15,
                   stiffness: 120,
                   mass: 0.8,
                 },

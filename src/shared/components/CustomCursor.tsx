@@ -1,54 +1,60 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 400 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const posRef = useRef({ x: -100, y: -100 });
+  const ringPosRef = useRef({ x: -100, y: -100 });
+  const rafRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    const lerp = (start: number, end: number, factor: number) =>
+      start + (end - start) * factor;
+
+    const animate = () => {
+      ringPosRef.current.x = lerp(ringPosRef.current.x, posRef.current.x, 0.15);
+      ringPosRef.current.y = lerp(ringPosRef.current.y, posRef.current.y, 0.15);
+
+      dot.style.transform = `translate(${posRef.current.x - 4}px, ${
+        posRef.current.y - 4
+      }px)`;
+
+      ring.style.transform = `translate(${ringPosRef.current.x - 20}px, ${
+        ringPosRef.current.y - 20
+      }px) scale(${isHovering ? 1.3 : 1})`;
+
+      rafRef.current = requestAnimationFrame(animate);
     };
 
-    const handleMouseEnter = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
+      posRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.closest("button") ||
-        target.closest("a") ||
-        target.classList.contains("cursor-pointer")
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      const interactive = target.closest(
+        "button, a, [role='button'], .cursor-pointer"
+      );
+      setIsHovering(!!interactive);
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseEnter);
-
-    document.addEventListener("mouseleave", () => setIsVisible(false));
-    document.addEventListener("mouseenter", () => setIsVisible(true));
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleMouseEnter);
-      document.removeEventListener("mouseleave", () => setIsVisible(false));
-      document.removeEventListener("mouseenter", () => setIsVisible(true));
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [isHovering]);
 
   return (
     <>
@@ -63,35 +69,19 @@ export default function CustomCursor() {
         }
       `}</style>
 
-      <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block overflow-hidden">
-        <motion.div
-          className="fixed top-0 left-0 w-3 h-3 bg-cyan-400 rounded-full mix-blend-difference pointer-events-none"
-          style={{
-            x: cursorX,
-            y: cursorY,
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
+      <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">
+        <div
+          ref={dotRef}
+          className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full will-change-transform"
         />
-
-        <motion.div
-          className="fixed top-0 left-0 w-8 h-8 border border-white/50 rounded-full mix-blend-difference pointer-events-none"
+        <div
+          ref={ringRef}
+          className="fixed top-0 left-0 w-10 h-10 border border-white/30 rounded-full will-change-transform transition-[border-color] duration-150"
           style={{
-            x: cursorXSpring,
-            y: cursorYSpring,
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
-          animate={{
-            scale: isHovering ? 2 : 1,
-            backgroundColor: isHovering
-              ? "rgba(34, 211, 238, 0.1)"
-              : "transparent",
             borderColor: isHovering
-              ? "rgba(34, 211, 238, 0.8)"
-              : "rgba(255, 255, 255, 0.5)",
+              ? "rgba(255,255,255,0.6)"
+              : "rgba(255,255,255,0.3)",
           }}
-          transition={{ type: "spring", damping: 20, stiffness: 300 }}
         />
       </div>
     </>

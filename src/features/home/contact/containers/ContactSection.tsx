@@ -199,7 +199,7 @@ export default function ContactSection() {
                   <h3 className="text-sm text-white/30 uppercase tracking-wider mb-4 font-light">
                     Social
                   </h3>
-                  <div className="flex gap-3">
+                  <div className="flex gap-4 md:gap-3">
                     {contactData.socials.map((social, index) => (
                       <motion.a
                         key={social.name}
@@ -232,7 +232,7 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
+                    className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
                     placeholder="Your name"
                   />
                 </div>
@@ -247,7 +247,7 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
+                    className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -262,7 +262,7 @@ export default function ContactSection() {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all resize-none"
+                    className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </div>
