@@ -29,14 +29,18 @@ export const metadata: Metadata = {
     "React",
     "Portfolio",
     "Indonesia",
+    "Malang",
   ],
   authors: [{ name: "Alfi Tsani", url: "https://github.com/alfitsani" }],
   creator: "Alfi Tsani",
-  metadataBase: new URL("https://alfitsani.vercel.app"),
+  metadataBase: new URL("https://alfitsani.my.id"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://alfitsani.vercel.app",
+    url: "https://alfitsani.my.id",
     siteName: "Alfi Tsani Portfolio",
     title: "Alfi Tsani - Frontend Developer Portfolio",
     description:
@@ -62,6 +66,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  verification: {
+    google: "google-site-verification-code",
+  },
 };
 
 import CustomCursor from "@/shared/components/CustomCursor";

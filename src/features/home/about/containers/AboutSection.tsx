@@ -7,6 +7,8 @@ import ScrollReveal from "@/shared/components/ScrollReveal";
 import { aboutData } from "../data/aboutData";
 import { Coffee, Gamepad2, Moon, Headphones } from "lucide-react";
 import ScrollRevealText from "../components/ScrollRevealText";
+import BentoGridBackground from "../components/BentoGridBackground";
+import ExperienceTimeline from "../components/ExperienceTimeline";
 import "../styles/about.css";
 
 export default function AboutSection() {
@@ -63,6 +65,8 @@ export default function AboutSection() {
         <div className="max-w-5xl mx-auto">
           <ScrollReveal delay={0.2}>
             <div className="flex flex-col items-center mb-20 relative h-[600px]">
+              <BentoGridBackground />
+
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-white/20 border-2 border-white/30 rounded-full z-30 shadow-lg" />
 
               <svg
@@ -192,6 +196,8 @@ export default function AboutSection() {
               paragraphs={aboutData.description.split("\n\n")}
             />
           </ScrollReveal>
+
+          <ExperienceTimeline />
         </div>
       </div>
 

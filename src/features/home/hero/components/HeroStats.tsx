@@ -32,7 +32,7 @@ export default function HeroStats() {
   }, []);
 
   return (
-    <div className="absolute bottom-32 md:bottom-40 left-6 md:left-12 z-20 font-mono text-[10px] md:text-xs text-white/40 space-y-2">
+    <div className="hidden md:block absolute bottom-32 md:bottom-40 left-6 md:left-12 z-20 font-mono text-[10px] md:text-xs text-white/40 space-y-2">
       <div className="flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
         <span>AVAILABLE FOR WORK</span>

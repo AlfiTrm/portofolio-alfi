@@ -9,6 +9,7 @@ export default function CustomCursor() {
   const posRef = useRef({ x: -100, y: -100 });
   const ringPosRef = useRef({ x: -100, y: -100 });
   const rafRef = useRef<number | undefined>(undefined);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     const dot = dotRef.current;
@@ -19,6 +20,8 @@ export default function CustomCursor() {
       start + (end - start) * factor;
 
     const animate = () => {
+      if (!isAnimatingRef.current) return;
+
       ringPosRef.current.x = lerp(ringPosRef.current.x, posRef.current.x, 0.15);
       ringPosRef.current.y = lerp(ringPosRef.current.y, posRef.current.y, 0.15);
 
@@ -30,11 +33,27 @@ export default function CustomCursor() {
         ringPosRef.current.y - 20
       }px) scale(${isHovering ? 1.3 : 1})`;
 
+      const dx = Math.abs(ringPosRef.current.x - posRef.current.x);
+      const dy = Math.abs(ringPosRef.current.y - posRef.current.y);
+
+      if (dx < 1 && dy < 1) {
+        isAnimatingRef.current = false;
+        return;
+      }
+
       rafRef.current = requestAnimationFrame(animate);
+    };
+
+    const startAnimation = () => {
+      if (!isAnimatingRef.current) {
+        isAnimatingRef.current = true;
+        rafRef.current = requestAnimationFrame(animate);
+      }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY };
+      startAnimation();
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -47,12 +66,12 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mouseover", handleMouseOver, { passive: true });
-    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      isAnimatingRef.current = false;
     };
   }, [isHovering]);
 

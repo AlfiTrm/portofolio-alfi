@@ -39,14 +39,14 @@ export default function ScrambleText({
       setScrambledText(newText);
       setRevealIndex(Math.floor(pos));
 
-      pos += 1 / 3;
+      pos += 0.4;
 
       if (pos >= text.length) {
         if (intervalRef.current) clearInterval(intervalRef.current);
         setScrambledText(text.split(""));
         setRevealIndex(text.length);
       }
-    }, 30);
+    }, 50);
   }, [text]);
 
   useEffect(() => {

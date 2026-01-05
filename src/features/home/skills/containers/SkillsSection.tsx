@@ -33,7 +33,6 @@ export default function SkillsSection() {
           </h2>
         </ScrollReveal>
 
-        {/* Tab Buttons */}
         <ScrollReveal delay={0.1}>
           <div className="flex justify-center gap-2 mb-12">
             {skillsData.services.map((service, index) => (
@@ -60,7 +59,6 @@ export default function SkillsSection() {
           </div>
         </ScrollReveal>
 
-        {/* Tab Content */}
         <ScrollReveal delay={0.2}>
           <div className="relative min-h-[350px]">
             <AnimatePresence mode="wait">

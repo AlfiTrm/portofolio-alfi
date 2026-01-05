@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useSyncExternalStore } from "react";
 import Navbar from "@/shared/components/Navbar";
-import FloatingOrbs from "@/shared/components/FloatingOrbs";
 import SmoothScroll from "@/shared/components/SmoothScroll";
 import Footer from "@/shared/components/Footer";
 import TechStackTransition from "@/shared/components/TechStackTransition";
@@ -62,7 +61,6 @@ export default function HomeScreen() {
           ))}
 
         <div className="relative">
-          <FloatingOrbs count={3} />
           <div className="fixed inset-0 bg-grid opacity-20 pointer-events-none" />
 
           <Navbar />

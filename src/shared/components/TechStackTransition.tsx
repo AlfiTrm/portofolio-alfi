@@ -46,19 +46,7 @@ const TechIcon = ({ name }: { name: string }) => {
   const config = configs[name] || configs.nextjs;
 
   return (
-    <motion.div
-      className="relative w-20 h-20 flex items-center justify-center rounded-xl group overflow-hidden"
-      style={{
-        backgroundColor: "rgba(255, 255, 255, 0.03)",
-        border: "1px solid rgba(255, 255, 255, 0.05)",
-      }}
-      whileHover={{
-        scale: 1.08,
-        backgroundColor: `${config.hoverColor}15`,
-        borderColor: `${config.hoverColor}40`,
-      }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className="relative w-20 h-20 flex items-center justify-center rounded-xl group overflow-hidden bg-white/[0.03] border border-white/5 hover:scale-105 hover:border-white/20 transition-all duration-300">
       <div
         className="relative z-10 text-white/20 group-hover:text-[var(--hover-color)] transition-colors duration-300"
         style={{ "--hover-color": config.color } as React.CSSProperties}
@@ -72,16 +60,16 @@ const TechIcon = ({ name }: { name: string }) => {
           boxShadow: `inset 0 0 20px ${config.color}20`,
         }}
       />
-    </motion.div>
+    </div>
   );
 };
 
 export default function TechStackTransition() {
-  const tripleStack = [...techStack, ...techStack, ...techStack];
+  const quadStack = [...techStack, ...techStack, ...techStack, ...techStack];
 
   return (
-    <section className="relative py-20 overflow-hidden border-y border-white/5">
-      <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-md" />
+    <section className="relative py-24 my-20 overflow-hidden border-y border-white/5 translate-y-20">
+      <div className="absolute inset-0 bg-white/[0.01]" />
 
       <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black via-black/90 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black via-black/90 to-transparent z-10 pointer-events-none" />
@@ -97,25 +85,34 @@ export default function TechStackTransition() {
         </motion.p>
       </div>
 
-      <div className="relative">
-        <motion.div
+      <div className="relative overflow-hidden">
+        <div
           className="flex gap-20 items-center"
-          animate={{ x: ["0%", "-33.33%"] }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
+          style={{
+            width: "max-content",
+            animation: "techScroll 25s linear infinite",
           }}
         >
-          {tripleStack.map((tech, index) => (
+          {quadStack.map((tech, index) => (
             <div key={`${tech.name}-${index}`} className="flex-shrink-0">
               <TechIcon name={tech.icon} />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      <style jsx global>{`
+        @keyframes techScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -20,7 +20,6 @@ function FloatingFact({
   label: string;
   index: number;
 }) {
-  // Use lazy initializer to compute random position once during initial render
   const [position] = useState(() => ({
     x: (Math.random() - 0.5) * 200,
     y: (Math.random() - 0.5) * 80,

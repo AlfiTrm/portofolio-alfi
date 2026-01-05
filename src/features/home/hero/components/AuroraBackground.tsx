@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 export default function AuroraBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Main Aurora Blobs */}
       <motion.div
         className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-cyan-500/30 to-blue-500/20 blur-[100px]"
         animate={{
@@ -46,7 +45,6 @@ export default function AuroraBackground() {
         }}
       />
 
-      {/* Noise Texture Overlay */}
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{

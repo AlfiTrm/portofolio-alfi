@@ -64,8 +64,7 @@ export default function PixelCharacter() {
   }, [lineIndex, codeLines]);
 
   return (
-    <div className="absolute bottom-28 md:bottom-36 right-4 md:right-10 z-20">
-      {/* Mini Terminal Window */}
+    <div className="hidden md:block absolute bottom-28 md:bottom-36 right-4 md:right-10 z-20">
       <motion.div
         className="relative w-[150px] md:w-[170px] bg-black/60 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden shadow-2xl"
         initial={{ opacity: 0, y: 20 }}
@@ -73,7 +72,6 @@ export default function PixelCharacter() {
         transition={{ delay: 1 }}
         whileHover={{ scale: 1.03, borderColor: "rgba(34,211,238,0.3)" }}
       >
-        {/* Title Bar */}
         <div className="flex items-center justify-between px-2 py-1.5 bg-white/5 border-b border-white/5">
           <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
@@ -83,9 +81,7 @@ export default function PixelCharacter() {
           <span className="text-[7px] text-white/40 font-mono">main.ts</span>
         </div>
 
-        {/* Code Area with line numbers */}
         <div className="p-2 font-mono text-[8px] md:text-[9px] flex gap-2">
-          {/* Line numbers */}
           <div className="text-white/20 select-none">
             {codeLines.map((_, i) => (
               <div key={i} className="leading-relaxed">
@@ -94,9 +90,7 @@ export default function PixelCharacter() {
             ))}
           </div>
 
-          {/* Code content */}
           <div className="flex-1">
-            {/* Previous lines with syntax highlighting */}
             {codeLines.slice(0, lineIndex).map((line, i) => (
               <div
                 key={i}
@@ -105,7 +99,6 @@ export default function PixelCharacter() {
               />
             ))}
 
-            {/* Current typing line */}
             <div className="leading-relaxed flex">
               <span
                 className="text-white/80"
@@ -118,7 +111,6 @@ export default function PixelCharacter() {
               />
             </div>
 
-            {/* Upcoming lines (hidden) */}
             {codeLines.slice(lineIndex + 1).map((_, i) => (
               <div
                 key={i}
@@ -131,7 +123,6 @@ export default function PixelCharacter() {
         </div>
       </motion.div>
 
-      {/* Status indicator */}
       <div className="flex items-center justify-end gap-1.5 mt-1.5 mr-1">
         <motion.div
           className="w-1 h-1 rounded-full bg-green-400"
