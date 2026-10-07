@@ -27,20 +27,24 @@ export default function ExploringSection() {
     <section
       ref={sectionRef}
       id="exploring"
+      tabIndex={-1}
+      aria-labelledby="exploring-heading"
+      data-restore-surface="light"
       className="relative h-[165vh] bg-[#f2ede6] text-black"
     >
-      <div className="sticky top-0 h-screen overflow-hidden px-5 md:px-10">
+      <div className="sticky top-0 h-svh overflow-hidden px-5 md:px-10">
         <motion.div
+          data-restore-surface="dark"
           className="absolute inset-0 bg-black"
           style={{ y: reduceMotion ? "-100%" : blackY }}
           aria-hidden="true"
         />
-
         <motion.h2
+          id="exploring-heading"
           style={{
             y: reduceMotion ? 0 : titleY,
           }}
-          className="relative z-10 mx-auto w-full max-w-[1440px] pt-[12vh] text-[clamp(3.6rem,13vw,12rem)] leading-[0.78] tracking-[-0.06em] text-black [font-family:var(--font-akira)]"
+          className="relative z-10 mx-auto w-full max-w-[1440px] pt-[12vh] text-[clamp(2rem,11vw,12rem)] leading-[0.78] tracking-[-0.06em] text-black [font-family:var(--font-akira)] sm:text-[clamp(3rem,10.5vw,12rem)] lg:text-[clamp(3.6rem,12.5vw,12rem)]"
         >
           EXPLORING
         </motion.h2>
