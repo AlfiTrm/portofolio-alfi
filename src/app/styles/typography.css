@@ -1,0 +1,14 @@
+:root {
+  --font-display: var(--font-akira);
+  --font-body: var(--font-geist-sans);
+  --font-ui: var(--font-geist-sans);
+}
+
+@theme inline {
+  --font-heading: var(--font-display);
+  --font-sans: var(--font-body);
+}
+
+body {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}

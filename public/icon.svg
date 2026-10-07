@@ -1,5 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#000"/>
-  <text x="16" y="22" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">AT</text>
-  <circle cx="26" cy="22" r="2" fill="#22d3ee"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Alfi Tsani favicon</title>
+  <rect width="512" height="512" fill="#050505" />
+  <svg x="48" y="68" width="416" height="376" viewBox="0 0 14500 13100" fill="none">
+    <g transform="translate(-200 -2800)" fill="#fff">
+      <path d="M796.856 8216.41C8813.96 4830.42 8936.61 8201.63 7546.52 11365.8L11733.1 3492.01L796.856 8216.41Z" />
+      <path d="M14188.5 15336.9C12512.5 6796.98 9649.08 8580.45 7803.16 11502.3L11989.7 3628.47L14188.5 15336.9Z" />
+    </g>
+  </svg>
 </svg>
