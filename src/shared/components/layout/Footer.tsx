@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import BrandLogo from "./BrandLogo";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -14,10 +15,9 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-2xl font-bold"
+            className="flex items-center"
           >
-            <span className="text-gradient">AT</span>
-            <span className="text-white/40">.</span>
+            <BrandLogo className="h-9" />
           </motion.div>
 
           <motion.p
