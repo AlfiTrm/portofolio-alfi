@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { heroEntranceMotion } from "../heroMotion";
 
 interface HeroEntranceProps {
   isReady: boolean;
@@ -20,7 +21,7 @@ export default function HeroEntrance({ isReady, onComplete }: HeroEntranceProps)
       transition={
         reduceMotion
           ? { duration: 0 }
-          : { delay: 3.55, duration: 0.7, ease: [0.76, 0, 0.24, 1] }
+          : heroEntranceMotion.dissolve
       }
       onAnimationComplete={() => {
         if (isReady) onComplete();
@@ -35,11 +36,7 @@ export default function HeroEntrance({ isReady, onComplete }: HeroEntranceProps)
           transition={
             reduceMotion
               ? { duration: 0 }
-              : {
-                  delay: 0.55,
-                  duration: 0.8,
-                  ease: [0.16, 1, 0.3, 1],
-                }
+              : heroEntranceMotion.lockup
           }
         >
           <Image src="/icon.svg" alt="" fill sizes="64px" />
@@ -57,9 +54,11 @@ export default function HeroEntrance({ isReady, onComplete }: HeroEntranceProps)
                     reduceMotion
                       ? { duration: 0 }
                       : {
-                          delay: 1.4 + index * 0.12,
-                          duration: 0.72,
-                          ease: [0.22, 1, 0.36, 1],
+                          delay:
+                            heroEntranceMotion.letters.delay +
+                            index * heroEntranceMotion.letters.stagger,
+                          duration: heroEntranceMotion.letters.duration,
+                          ease: heroEntranceMotion.letters.ease,
                         }
                   }
                 >
