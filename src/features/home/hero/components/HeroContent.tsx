@@ -32,7 +32,6 @@ export default function HeroContent({
 }: HeroContentProps) {
   return (
     <section
-      id="home"
       className="relative z-10 flex min-h-screen items-center overflow-hidden px-5 pt-20 md:px-8 md:pt-24"
     >
       <HeroImage

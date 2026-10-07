@@ -1,58 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import { motion, type MotionValue } from "framer-motion";
+import { motion, useReducedMotion, type MotionValue } from "framer-motion";
+import { heroEntranceMotion } from "../heroMotion";
 
 interface HeroPortraitLayerProps {
-  opacity: MotionValue<number>;
-  colorOpacity: MotionValue<number>;
-  monoOpacity: MotionValue<number>;
+  isReady: boolean;
   entranceState: "checking" | "playing" | "ready";
+  keepBackdrop: boolean;
+  portraitFilter: MotionValue<string>;
 }
 
 export default function HeroPortraitLayer({
-  opacity,
-  colorOpacity,
-  monoOpacity,
+  isReady,
   entranceState,
+  keepBackdrop,
+  portraitFilter,
 }: HeroPortraitLayerProps) {
+  const reduceMotion = useReducedMotion();
+  const entranceIsReady = isReady && entranceState === "playing";
+  const portraitIsVisible = keepBackdrop || entranceState === "ready" || entranceIsReady;
+
   return (
     <motion.div
       className="pointer-events-none absolute inset-0 z-[2]"
       aria-hidden="true"
     >
       <motion.div
-        className="absolute bottom-0 left-1/2 h-[82svh] w-[145vw] -translate-x-1/2 overflow-hidden md:bottom-auto md:top-0 md:h-screen md:w-[76vw]"
-        style={{ opacity }}
+        className="hero-portrait-frame absolute bottom-0 left-1/2 h-[78svh] w-[132vw] overflow-hidden lg:bottom-auto lg:top-0 lg:h-screen lg:w-[76vw]"
         initial={false}
-        animate={{ y: entranceState === "checking" ? "105%" : "0%" }}
+        animate={{ x: "-50%", y: portraitIsVisible ? "0%" : "105%" }}
         transition={
-          entranceState === "playing"
-            ? { delay: 2.05, duration: 1.55, ease: [0.16, 1, 0.3, 1] }
+          entranceIsReady && !keepBackdrop && !reduceMotion
+            ? heroEntranceMotion.portrait
             : { duration: 0 }
         }
       >
-        <motion.div className="absolute inset-0" style={{ opacity: colorOpacity }}>
+        <motion.div className="absolute inset-0" style={{ filter: portraitFilter }}>
           <Image
             src="/home/picture-me.webp"
             alt=""
             fill
             priority
-            sizes="(min-width: 768px) 76vw, 145vw"
-            className="object-contain object-bottom md:object-top [filter:brightness(0.9)_sepia(0.18)_saturate(0.92)_contrast(0.96)]"
-          />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          style={{ opacity: monoOpacity }}
-          aria-hidden="true"
-        >
-          <Image
-            src="/home/picture-me.webp"
-            alt=""
-            fill
-            sizes="(min-width: 768px) 76vw, 145vw"
-            className="object-contain object-bottom md:object-top [filter:brightness(1)_grayscale(1)_sepia(0)_saturate(0)_contrast(1)]"
+            unoptimized
+            sizes="(min-width: 1024px) 76vw, 132vw"
+            className="object-contain object-bottom lg:object-top"
           />
         </motion.div>
       </motion.div>
